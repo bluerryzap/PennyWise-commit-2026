@@ -1,4 +1,3 @@
-import Hero from "../components/hero.jsx";
 import { useState, useEffect } from "react";
 import { nanoid } from "nanoid";
 
@@ -193,205 +192,271 @@ export default function Home() {
 
   return (
     <div>
+      {/* HEADER */}
       <div
         id="header"
-        className="w-full px-7 py-2.5 bg-zinc-300 border-b border-black flex justify-start items-center"
+        className="w-full px-7 py-2.5 bg-amber-200 border-b border-black flex justify-start items-center"
       >
-        <p className="justify-center text-black text-3xl font-bold font-poppins">
-          Logo atau gambar apa deh
+        <p className="justify-center text-black text-2xl font-bold font-poppins">
+          PennyWise
         </p>
       </div>
-
-      <div
-        id="financial-summary-add-transaction"
-        className="w-full p-8 flex justify-start items-center gap-8"
-      >
+      {/* MAIN */}
+      <div className="w-full p-10 flex justify-start items-start gap-8">
+        {/* LEFT */}
         <div
-          id="financial-summary"
-          className="rounded-[20px] outline-1 outline-black flex flex-col justify-start items-start overflow-hidden"
+          id="financial-summary-and-add-transaction"
+          className="w-full flex flex-col justify-start items-start gap-8"
         >
-          <div className="w-full px-8 py-3 bg-zinc-300 rounded-tl-[20px] rounded-tr-[20px] flex flex-col justify-center items-start gap-2.5">
-            <h1 className="justify-center text-black text-2xl font-bold font-poppins">
-              Financial Summary
-            </h1>
+          {/* FINANCIAL SUMMARY */}
+          <div
+            id="financial-summary"
+            className="w-full rounded-2xl outline-1 outline-black flex flex-col justify-start items-start overflow-hidden"
+          >
+            <div className="w-full px-8 py-2 bg-pink-500 rounded-tl-2xl rounded-tr-2xl flex flex-col justify-center items-start gap-2">
+              <h1 className="justify-center bg-linear-to-b from-amber-200 to-white bg-clip-text text-transparent text-3xl font-bold font-poppins">
+                Financial Summary
+              </h1>
+            </div>
+
+            <div className="w-full px-8 py-3 bg-amber-100 rounded-bl-2xl rounded-br-2xl flex justify-center items-center gap-8">
+              <div className="w-full flex flex-col justify-start items-start">
+                <h2 className="justify-center text-black text-xl font-semibold font-poppins">
+                  Current Balance
+                </h2>
+                <p className="justify-center text-black text-0.5xl font-medium font-poppins">
+                  Rp{balance.toLocaleString("id-ID")}
+                </p>
+              </div>
+
+              <div className="w-full flex flex-col justify-start items-start">
+                <h2 className="justify-center text-black text-xl font-semibold font-poppins">
+                  Total Income
+                </h2>
+                <p className="justify-center text-black text-0.5xl font-medium font-poppins">
+                  +Rp{totalIncome.toLocaleString("id-ID")}
+                </p>
+              </div>
+
+              <div className="w-full flex flex-col justify-start items-start">
+                <h2 className="justify-center text-black text-xl font-semibold font-poppins">
+                  Total Expenses
+                </h2>
+                <p className="justify-center text-black text-0.5xl font-medium font-poppins">
+                  -Rp{totalExpense.toLocaleString("id-ID")}
+                </p>
+              </div>
+            </div>
           </div>
 
-          <div className="px-8 py-3 bg-stone-400 rounded-bl-[20px] rounded-br-[20px] flex justify-center items-center gap-7">
-            <div className="flex flex-col justify-start items-start">
-              <h2 className="justify-center text-black text-xl font-semibold font-poppins">
-                Current Balance
-              </h2>
-              <p className="justify-center text-black text-0.5xl font-medium font-poppins">
-                Rp{balance.toLocaleString("id-ID")}
-              </p>
-            </div>
+          {/* ADD TRANSACTION */}
+          <div
+            id="add-transaction"
+            className="w-full max-w-xl rounded-2xl outline-1 outline-black flex flex-col justify-start items-start overflow-hidden bg-amber-100"
+          >
+            <form onSubmit={handleSubmit} className="w-full">
+              {/* HEADER */}
+              <div className="w-full px-8 py-3 bg-pink-500 rounded-tl-2xl rounded-tr-2xl flex flex-col justify-center items-start gap-2">
+                <h1 className="bg-linear-to-b from-amber-200 to-white bg-clip-text text-transparent text-3xl font-bold font-poppins">
+                  Add Transaction
+                </h1>
+              </div>
 
-            <div className="flex flex-col justify-start items-start">
-              <h2 className="justify-center text-black text-xl font-semibold font-poppins">
-                Total Income
-              </h2>
-              <p className="justify-center text-black text-0.5xl font-medium font-poppins">
-                +Rp{totalIncome.toLocaleString("id-ID")}
-              </p>
-            </div>
+              {/* ADD TRANSACTION FORM BODY */}
+              <div className="w-full px-8 py-3 flex flex-col justify-center items-center gap-6">
+                <div className="w-full flex flex-col justify-start items-start gap-5">
+                  {/* TRANSACTION TYPE */}
+                  <div className="w-full flex justify-between items-center gap-4">
+                    <label className="w-40 shrink-0 text-black text-xl font-semibold font-poppins">
+                      Transaction Type
+                    </label>
+                    <div className="flex-1 px-3 py-1.5 bg-amber-100 rounded-sm outline-1 outline-black flex justify-start items-center">
+                      <select
+                        value={transactionMode}
+                        onChange={(e) => changeMode(e.target.value)}
+                        className="w-full bg-transparent outline-none text-black text-base font-medium font-poppins"
+                      >
+                        <option value="expense">Expense</option>
+                        <option value="income">Income</option>
+                      </select>
+                    </div>
+                  </div>
 
-            <div className="flex flex-col justify-start items-start">
-              <h2 className="justify-center text-black text-xl font-semibold font-poppins">
-                Total Expenses
-              </h2>
-              <p className="justify-center text-black text-0.5xl font-medium font-poppins">
-                -Rp{totalExpense.toLocaleString("id-ID")}
-              </p>
-            </div>
+                  {/* AMOUNT */}
+                  <div className="w-full flex justify-between items-center gap-4">
+                    <label className="w-40 shrink-0 text-black text-xl font-semibold font-poppins">
+                      Amount (Rp)
+                    </label>
+                    <div className="flex-1 px-3 py-1.5 bg-amber-100 rounded-sm outline-1 outline-black flex justify-start items-center">
+                      <input
+                        type="number"
+                        min="1"
+                        step="any"
+                        placeholder="Enter amount"
+                        value={amount}
+                        onChange={(e) => setAmount(e.target.value)}
+                        className="w-full bg-transparent outline-none text-black text-base font-medium font-poppins"
+                        required
+                      />
+                    </div>
+                  </div>
+
+                  {/* CATEGORY */}
+                  <div className="w-full flex justify-between items-center gap-4">
+                    <label className="w-40 shrink-0 text-black text-xl font-semibold font-poppins">
+                      Category
+                    </label>
+                    <div className="flex-1 px-3 py-1.5 bg-amber-100 rounded-sm outline-1 outline-black flex justify-start items-center">
+                      <select
+                        value={type}
+                        onChange={(e) => setType(e.target.value)}
+                        className="w-full bg-transparent outline-none text-black text-base font-medium font-poppins"
+                      >
+                        {Object.entries(
+                          transactionMode === "expense"
+                            ? expenseType
+                            : incomeType,
+                        ).map(([key, label]) => (
+                          <option key={key} value={key}>
+                            {label}
+                          </option>
+                        ))}
+                      </select>
+                    </div>
+                  </div>
+                </div>
+
+                {/* BUTTON */}
+                <button
+                  type="submit"
+                  className="w-full h-11 px-3 py-1 bg-orange-300 rounded-sm outline-1 outline-black flex justify-center items-center text-black text-xl font-medium font-poppins hover:bg-orange-400 transition-colors cursor-pointer"
+                >
+                  Add Transaction
+                </button>
+              </div>
+            </form>
           </div>
         </div>
-      </div>
 
-      <div id="add-transaction" className="">
-        {/* ADD TRANSACTION FORM */}
-        <form onSubmit={handleSubmit}>
-          <h1>Add Transaction</h1>
+        <div
+          id="transaction-history"
+          className="w-full flex flex-col justify-start items-center gap-8"
+        >
+          {/* TRANSACTION HISTORY */}
+          <div className="transaction-history">
+            <h1>Transaction History</h1>
 
-          <label>Transaction Type</label>
-          <select
-            value={transactionMode}
-            onChange={(e) => changeMode(e.target.value)}
-          >
-            <option value="expense">Expense</option>
-            <option value="income">Income</option>
-          </select>
+            {/* EXPENSES */}
+            <h3>Expenses</h3>
 
-          <label>Amount (Rp)</label>
-          <input
-            type="number"
-            min="1"
-            step="any"
-            placeholder="Enter amount"
-            value={amount}
-            onChange={(e) => setAmount(e.target.value)}
-            required
-          />
+            {expense.length === 0 && <p>No expenses yet.</p>}
 
-          <label>Category</label>
-          <select value={type} onChange={(e) => setType(e.target.value)}>
-            {Object.entries(
-              transactionMode === "expense" ? expenseType : incomeType,
-            ).map(([key, label]) => (
-              <option key={key} value={key}>
-                {label}
-              </option>
+            {expense.map((item) => (
+              <div key={item.id}>
+                {editingId === item.id && editingMode === "expense" ? (
+                  <div>
+                    <input
+                      type="number"
+                      min="1"
+                      step="any"
+                      value={editAmount}
+                      onChange={(e) => setEditAmount(e.target.value)}
+                    />
+
+                    <select
+                      value={editType}
+                      onChange={(e) => setEditType(e.target.value)}
+                    >
+                      {Object.entries(expenseType).map(([key, label]) => (
+                        <option key={key} value={key}>
+                          {label}
+                        </option>
+                      ))}
+                    </select>
+
+                    <button onClick={saveEdit}>Save</button>
+
+                    <button onClick={cancelEdit}>Cancel</button>
+                  </div>
+                ) : (
+                  <div>
+                    <p>Category: {expenseType[item.type]}</p>
+
+                    <p>
+                      Amount: Rp
+                      {item.amount.toLocaleString("id-ID")}
+                    </p>
+
+                    <button onClick={() => startEdit(item, "expense")}>
+                      Edit
+                    </button>
+
+                    <button onClick={() => deleteExpense(item.id)}>
+                      Delete
+                    </button>
+                  </div>
+                )}
+
+                <hr />
+              </div>
             ))}
-          </select>
 
-          <button type="submit">Add Transaction</button>
-        </form>
-      </div>
+            {/* INCOME */}
+            <h3>Income</h3>
 
-      {/* TRANSACTION HISTORY */}
-      <div className="transaction-history">
-        <h2>Transaction History</h2>
+            {income.length === 0 && <p>No income yet.</p>}
 
-        {/* EXPENSES */}
-        <h3>Expenses</h3>
+            {income.map((item) => (
+              <div key={item.id}>
+                {editingId === item.id && editingMode === "income" ? (
+                  <div>
+                    <input
+                      type="number"
+                      min="1"
+                      step="any"
+                      value={editAmount}
+                      onChange={(e) => setEditAmount(e.target.value)}
+                    />
 
-        {expense.length === 0 && <p>No expenses yet.</p>}
+                    <select
+                      value={editType}
+                      onChange={(e) => setEditType(e.target.value)}
+                    >
+                      {Object.entries(incomeType).map(([key, label]) => (
+                        <option key={key} value={key}>
+                          {label}
+                        </option>
+                      ))}
+                    </select>
 
-        {expense.map((item) => (
-          <div key={item.id}>
-            {editingId === item.id && editingMode === "expense" ? (
-              <div>
-                <input
-                  type="number"
-                  min="1"
-                  step="any"
-                  value={editAmount}
-                  onChange={(e) => setEditAmount(e.target.value)}
-                />
+                    <button onClick={saveEdit}>Save</button>
 
-                <select
-                  value={editType}
-                  onChange={(e) => setEditType(e.target.value)}
-                >
-                  {Object.entries(expenseType).map(([key, label]) => (
-                    <option key={key} value={key}>
-                      {label}
-                    </option>
-                  ))}
-                </select>
+                    <button onClick={cancelEdit}>Cancel</button>
+                  </div>
+                ) : (
+                  <div>
+                    <p>Category: {incomeType[item.type]}</p>
 
-                <button onClick={saveEdit}>Save</button>
+                    <p>
+                      Amount: Rp
+                      {item.amount.toLocaleString("id-ID")}
+                    </p>
 
-                <button onClick={cancelEdit}>Cancel</button>
+                    <button onClick={() => startEdit(item, "income")}>
+                      Edit
+                    </button>
+
+                    <button onClick={() => deleteIncome(item.id)}>
+                      Delete
+                    </button>
+                  </div>
+                )}
+
+                <hr />
               </div>
-            ) : (
-              <div>
-                <p>Category: {expenseType[item.type]}</p>
-
-                <p>
-                  Amount: Rp
-                  {item.amount.toLocaleString("id-ID")}
-                </p>
-
-                <button onClick={() => startEdit(item, "expense")}>Edit</button>
-
-                <button onClick={() => deleteExpense(item.id)}>Delete</button>
-              </div>
-            )}
-
-            <hr />
+            ))}
           </div>
-        ))}
-
-        {/* INCOME */}
-        <h3>Income</h3>
-
-        {income.length === 0 && <p>No income yet.</p>}
-
-        {income.map((item) => (
-          <div key={item.id}>
-            {editingId === item.id && editingMode === "income" ? (
-              <div>
-                <input
-                  type="number"
-                  min="1"
-                  step="any"
-                  value={editAmount}
-                  onChange={(e) => setEditAmount(e.target.value)}
-                />
-
-                <select
-                  value={editType}
-                  onChange={(e) => setEditType(e.target.value)}
-                >
-                  {Object.entries(incomeType).map(([key, label]) => (
-                    <option key={key} value={key}>
-                      {label}
-                    </option>
-                  ))}
-                </select>
-
-                <button onClick={saveEdit}>Save</button>
-
-                <button onClick={cancelEdit}>Cancel</button>
-              </div>
-            ) : (
-              <div>
-                <p>Category: {incomeType[item.type]}</p>
-
-                <p>
-                  Amount: Rp
-                  {item.amount.toLocaleString("id-ID")}
-                </p>
-
-                <button onClick={() => startEdit(item, "income")}>Edit</button>
-
-                <button onClick={() => deleteIncome(item.id)}>Delete</button>
-              </div>
-            )}
-
-            <hr />
-          </div>
-        ))}
+        </div>
       </div>
     </div>
   );
