@@ -195,7 +195,7 @@ export default function Home() {
     <div>
       <div
         id="header"
-        className="w-full px-7 py-2.5 bg-zinc-300 flex justify-start items-center"
+        className="w-full px-7 py-2.5 bg-zinc-300 border-b border-black flex justify-start items-center"
       >
         <p className="justify-center text-black text-3xl font-bold font-poppins">
           Logo atau gambar apa deh
@@ -211,35 +211,35 @@ export default function Home() {
           className="rounded-[20px] outline-1 outline-black flex flex-col justify-start items-start overflow-hidden"
         >
           <div className="w-full px-8 py-3 bg-zinc-300 rounded-tl-[20px] rounded-tr-[20px] flex flex-col justify-center items-start gap-2.5">
-            <h1 className="w-full justify-center text-black text-3xl font-bold font-poppins">
+            <h1 className="justify-center text-black text-2xl font-bold font-poppins">
               Financial Summary
             </h1>
           </div>
 
-          <div className="w-full px-8 py-3 bg-stone-400 rounded-bl-[20px] rounded-br-[20px] flex justify-center items-center gap-7">
+          <div className="px-8 py-3 bg-stone-400 rounded-bl-[20px] rounded-br-[20px] flex justify-center items-center gap-7">
             <div className="flex flex-col justify-start items-start">
-              <h2 className="w-full justify-center text-black text-2xl font-semibold font-poppins">
+              <h2 className="justify-center text-black text-xl font-semibold font-poppins">
                 Current Balance
               </h2>
-              <p className="w-full justify-center text-black text-xl font-medium font-poppins">
+              <p className="justify-center text-black text-0.5xl font-medium font-poppins">
                 Rp{balance.toLocaleString("id-ID")}
               </p>
             </div>
 
-            <div className="w-40 flex flex-col justify-start items-start">
-              <h2 className="w-full justify-center text-black text-2xl font-semibold font-poppins">
+            <div className="flex flex-col justify-start items-start">
+              <h2 className="justify-center text-black text-xl font-semibold font-poppins">
                 Total Income
               </h2>
-              <p className="w-full justify-center text-black text-xl font-medium font-poppins">
+              <p className="justify-center text-black text-0.5xl font-medium font-poppins">
                 +Rp{totalIncome.toLocaleString("id-ID")}
               </p>
             </div>
 
-            <div className="w-48 flex flex-col justify-start items-start">
-              <h2 className="w-72 justify-center text-black text-2xl font-semibold font-poppins">
+            <div className="flex flex-col justify-start items-start">
+              <h2 className="justify-center text-black text-xl font-semibold font-poppins">
                 Total Expenses
               </h2>
-              <p className="w-full justify-center text-black text-xl font-medium font-poppins">
+              <p className="justify-center text-black text-0.5xl font-medium font-poppins">
                 -Rp{totalExpense.toLocaleString("id-ID")}
               </p>
             </div>
@@ -247,43 +247,45 @@ export default function Home() {
         </div>
       </div>
 
-      {/* ADD TRANSACTION FORM */}
-      <form onSubmit={handleSubmit}>
-        <h2>Add Transaction</h2>
+      <div id="add-transaction" className="">
+        {/* ADD TRANSACTION FORM */}
+        <form onSubmit={handleSubmit}>
+          <h1>Add Transaction</h1>
 
-        <label>Transaction Type</label>
-        <select
-          value={transactionMode}
-          onChange={(e) => changeMode(e.target.value)}
-        >
-          <option value="expense">Expense</option>
-          <option value="income">Income</option>
-        </select>
+          <label>Transaction Type</label>
+          <select
+            value={transactionMode}
+            onChange={(e) => changeMode(e.target.value)}
+          >
+            <option value="expense">Expense</option>
+            <option value="income">Income</option>
+          </select>
 
-        <label>Amount (Rp)</label>
-        <input
-          type="number"
-          min="1"
-          step="any"
-          placeholder="Enter amount"
-          value={amount}
-          onChange={(e) => setAmount(e.target.value)}
-          required
-        />
+          <label>Amount (Rp)</label>
+          <input
+            type="number"
+            min="1"
+            step="any"
+            placeholder="Enter amount"
+            value={amount}
+            onChange={(e) => setAmount(e.target.value)}
+            required
+          />
 
-        <label>Category</label>
-        <select value={type} onChange={(e) => setType(e.target.value)}>
-          {Object.entries(
-            transactionMode === "expense" ? expenseType : incomeType,
-          ).map(([key, label]) => (
-            <option key={key} value={key}>
-              {label}
-            </option>
-          ))}
-        </select>
+          <label>Category</label>
+          <select value={type} onChange={(e) => setType(e.target.value)}>
+            {Object.entries(
+              transactionMode === "expense" ? expenseType : incomeType,
+            ).map(([key, label]) => (
+              <option key={key} value={key}>
+                {label}
+              </option>
+            ))}
+          </select>
 
-        <button type="submit">Add Transaction</button>
-      </form>
+          <button type="submit">Add Transaction</button>
+        </form>
+      </div>
 
       {/* TRANSACTION HISTORY */}
       <div className="transaction-history">
