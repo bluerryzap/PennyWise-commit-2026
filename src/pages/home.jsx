@@ -1,4 +1,3 @@
-
 import Hero from "../components/hero.jsx";
 import { useState, useEffect } from "react";
 import { nanoid } from "nanoid";
@@ -14,7 +13,7 @@ const expenseType = {
   bills: "Bills & Subscriptions",
   health: "Health & Personal Care",
   savings: "Savings",
-  other: "Other"
+  other: "Other",
 };
 
 const incomeType = {
@@ -25,11 +24,10 @@ const incomeType = {
   scholarship: "Scholarship",
   gift: "Gift",
   investment: "Investment",
-  other: "Other"
+  other: "Other",
 };
 
 export default function Home() {
-
   const [expense, setExpense] = useState(() => {
     try {
       const saved = localStorage.getItem("expenses");
@@ -75,8 +73,8 @@ export default function Home() {
       {
         id: nanoid(),
         amount: Number(amount),
-        type: type
-      }
+        type: type,
+      },
     ]);
   }
 
@@ -86,22 +84,18 @@ export default function Home() {
       {
         id: nanoid(),
         amount: Number(amount),
-        type: type
-      }
+        type: type,
+      },
     ]);
   }
 
   // DELETE
   function deleteExpense(id) {
-    setExpense((prev) =>
-      prev.filter((item) => item.id !== id)
-    );
+    setExpense((prev) => prev.filter((item) => item.id !== id));
   }
 
   function deleteIncome(id) {
-    setIncome((prev) =>
-      prev.filter((item) => item.id !== id)
-    );
+    setIncome((prev) => prev.filter((item) => item.id !== id));
   }
 
   // EDIT
@@ -112,10 +106,10 @@ export default function Home() {
           ? {
               ...item,
               amount: Number(newAmount),
-              type: newType
+              type: newType,
             }
-          : item
-      )
+          : item,
+      ),
     );
   }
 
@@ -126,10 +120,10 @@ export default function Home() {
           ? {
               ...item,
               amount: Number(newAmount),
-              type: newType
+              type: newType,
             }
-          : item
-      )
+          : item,
+      ),
     );
   }
 
@@ -191,36 +185,65 @@ export default function Home() {
   }
 
   // FINANCIAL SUMMARY
-  const totalIncome = income.reduce(
-    (total, item) => total + item.amount,
-    0
-  );
+  const totalIncome = income.reduce((total, item) => total + item.amount, 0);
 
-  const totalExpense = expense.reduce(
-    (total, item) => total + item.amount,
-    0
-  );
+  const totalExpense = expense.reduce((total, item) => total + item.amount, 0);
 
   const balance = totalIncome - totalExpense;
 
   return (
     <div>
-      <div className="financial-summary">
-        <h2>Financial Summary</h2>
+      <div
+        id="header"
+        className="w-full px-7 py-2.5 bg-zinc-300 flex justify-start items-center"
+      >
+        <p className="justify-center text-black text-3xl font-bold font-poppins">
+          Logo atau gambar apa deh
+        </p>
+      </div>
 
-        <div>
-          <h3>Current Balance</h3>
-          <h1>Rp{balance.toLocaleString("id-ID")}</h1>
-        </div>
+      <div
+        id="financial-summary-add-transaction"
+        className="w-full p-8 flex justify-start items-center gap-8"
+      >
+        <div
+          id="financial-summary"
+          className="rounded-[20px] outline-1 outline-black flex flex-col justify-start items-start overflow-hidden"
+        >
+          <div className="w-full px-8 py-3 bg-zinc-300 rounded-tl-[20px] rounded-tr-[20px] flex flex-col justify-center items-start gap-2.5">
+            <h1 className="w-full justify-center text-black text-3xl font-bold font-poppins">
+              Financial Summary
+            </h1>
+          </div>
 
-        <div>
-          <h3>Total Income</h3>
-          <p>+Rp{totalIncome.toLocaleString("id-ID")}</p>
-        </div>
+          <div className="w-full px-8 py-3 bg-stone-400 rounded-bl-[20px] rounded-br-[20px] flex justify-center items-center gap-7">
+            <div className="flex flex-col justify-start items-start">
+              <h2 className="w-full justify-center text-black text-2xl font-semibold font-poppins">
+                Current Balance
+              </h2>
+              <p className="w-full justify-center text-black text-xl font-medium font-poppins">
+                Rp{balance.toLocaleString("id-ID")}
+              </p>
+            </div>
 
-        <div>
-          <h3>Total Expenses</h3>
-          <p>-Rp{totalExpense.toLocaleString("id-ID")}</p>
+            <div className="w-40 flex flex-col justify-start items-start">
+              <h2 className="w-full justify-center text-black text-2xl font-semibold font-poppins">
+                Total Income
+              </h2>
+              <p className="w-full justify-center text-black text-xl font-medium font-poppins">
+                +Rp{totalIncome.toLocaleString("id-ID")}
+              </p>
+            </div>
+
+            <div className="w-48 flex flex-col justify-start items-start">
+              <h2 className="w-72 justify-center text-black text-2xl font-semibold font-poppins">
+                Total Expenses
+              </h2>
+              <p className="w-full justify-center text-black text-xl font-medium font-poppins">
+                -Rp{totalExpense.toLocaleString("id-ID")}
+              </p>
+            </div>
+          </div>
         </div>
       </div>
 
@@ -249,14 +272,9 @@ export default function Home() {
         />
 
         <label>Category</label>
-        <select
-          value={type}
-          onChange={(e) => setType(e.target.value)}
-        >
+        <select value={type} onChange={(e) => setType(e.target.value)}>
           {Object.entries(
-            transactionMode === "expense"
-              ? expenseType
-              : incomeType
+            transactionMode === "expense" ? expenseType : incomeType,
           ).map(([key, label]) => (
             <option key={key} value={key}>
               {label}
@@ -274,74 +292,47 @@ export default function Home() {
         {/* EXPENSES */}
         <h3>Expenses</h3>
 
-        {expense.length === 0 && (
-          <p>No expenses yet.</p>
-        )}
+        {expense.length === 0 && <p>No expenses yet.</p>}
 
         {expense.map((item) => (
           <div key={item.id}>
-            {editingId === item.id &&
-            editingMode === "expense" ? (
+            {editingId === item.id && editingMode === "expense" ? (
               <div>
                 <input
                   type="number"
                   min="1"
                   step="any"
                   value={editAmount}
-                  onChange={(e) =>
-                    setEditAmount(e.target.value)
-                  }
+                  onChange={(e) => setEditAmount(e.target.value)}
                 />
 
                 <select
                   value={editType}
-                  onChange={(e) =>
-                    setEditType(e.target.value)
-                  }
+                  onChange={(e) => setEditType(e.target.value)}
                 >
-                  {Object.entries(expenseType).map(
-                    ([key, label]) => (
-                      <option key={key} value={key}>
-                        {label}
-                      </option>
-                    )
-                  )}
+                  {Object.entries(expenseType).map(([key, label]) => (
+                    <option key={key} value={key}>
+                      {label}
+                    </option>
+                  ))}
                 </select>
 
-                <button onClick={saveEdit}>
-                  Save
-                </button>
+                <button onClick={saveEdit}>Save</button>
 
-                <button onClick={cancelEdit}>
-                  Cancel
-                </button>
+                <button onClick={cancelEdit}>Cancel</button>
               </div>
             ) : (
               <div>
-                <p>
-                  Category: {expenseType[item.type]}
-                </p>
+                <p>Category: {expenseType[item.type]}</p>
 
                 <p>
                   Amount: Rp
                   {item.amount.toLocaleString("id-ID")}
                 </p>
 
-                <button
-                  onClick={() =>
-                    startEdit(item, "expense")
-                  }
-                >
-                  Edit
-                </button>
+                <button onClick={() => startEdit(item, "expense")}>Edit</button>
 
-                <button
-                  onClick={() =>
-                    deleteExpense(item.id)
-                  }
-                >
-                  Delete
-                </button>
+                <button onClick={() => deleteExpense(item.id)}>Delete</button>
               </div>
             )}
 
@@ -352,74 +343,47 @@ export default function Home() {
         {/* INCOME */}
         <h3>Income</h3>
 
-        {income.length === 0 && (
-          <p>No income yet.</p>
-        )}
+        {income.length === 0 && <p>No income yet.</p>}
 
         {income.map((item) => (
           <div key={item.id}>
-            {editingId === item.id &&
-            editingMode === "income" ? (
+            {editingId === item.id && editingMode === "income" ? (
               <div>
                 <input
                   type="number"
                   min="1"
                   step="any"
                   value={editAmount}
-                  onChange={(e) =>
-                    setEditAmount(e.target.value)
-                  }
+                  onChange={(e) => setEditAmount(e.target.value)}
                 />
 
                 <select
                   value={editType}
-                  onChange={(e) =>
-                    setEditType(e.target.value)
-                  }
+                  onChange={(e) => setEditType(e.target.value)}
                 >
-                  {Object.entries(incomeType).map(
-                    ([key, label]) => (
-                      <option key={key} value={key}>
-                        {label}
-                      </option>
-                    )
-                  )}
+                  {Object.entries(incomeType).map(([key, label]) => (
+                    <option key={key} value={key}>
+                      {label}
+                    </option>
+                  ))}
                 </select>
 
-                <button onClick={saveEdit}>
-                  Save
-                </button>
+                <button onClick={saveEdit}>Save</button>
 
-                <button onClick={cancelEdit}>
-                  Cancel
-                </button>
+                <button onClick={cancelEdit}>Cancel</button>
               </div>
             ) : (
               <div>
-                <p>
-                  Category: {incomeType[item.type]}
-                </p>
+                <p>Category: {incomeType[item.type]}</p>
 
                 <p>
                   Amount: Rp
                   {item.amount.toLocaleString("id-ID")}
                 </p>
 
-                <button
-                  onClick={() =>
-                    startEdit(item, "income")
-                  }
-                >
-                  Edit
-                </button>
+                <button onClick={() => startEdit(item, "income")}>Edit</button>
 
-                <button
-                  onClick={() =>
-                    deleteIncome(item.id)
-                  }
-                >
-                  Delete
-                </button>
+                <button onClick={() => deleteIncome(item.id)}>Delete</button>
               </div>
             )}
 
