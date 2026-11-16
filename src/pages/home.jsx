@@ -374,7 +374,7 @@ export default function Home() {
           </div>
 
           {/* CONTENT CONTAINER */}
-          <div className="w-full max-h-[90vh] overflow-y-auto px-8 py-3 bg-amber-100 flex flex-col justify-start items-start gap-4">
+          <div className="w-full max-h-[60vh] overflow-y-auto px-8 py-3 bg-amber-100 flex flex-col justify-start items-start gap-4">
             {/* EXPENSES */}
             <div className="w-full flex flex-col justify-start items-start gap-3">
               <h2 className="w-full text-black text-xl font-semibold font-poppins">
