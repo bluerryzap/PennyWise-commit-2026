@@ -88,7 +88,7 @@ npm run preview
 Build produksi dapat dibuat dengan `npm run build`.
 
 ## Keterangan penggunaan AI, template, starter code, dan aset pihak ketiga
-- Penggunaan AI untuk membantu membenarkan error.
+- Penggunaan AI untuk membantu membenarkan error pada kode.
 - Melakukan code reuse dari proyek pribadi sebelumnya, lalu diubah.
 - Penggunaan library:
     1. React dan React DOM - untuk membangun antarmuka
