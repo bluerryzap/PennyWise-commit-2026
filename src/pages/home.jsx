@@ -13,7 +13,7 @@ const expenseType = {
   bills: "Bills & Subscriptions",
   health: "Health & Personal Care",
   savings: "Savings",
-  other: "Other"
+  other: "Other",
 };
 
 const incomeType = {
@@ -24,11 +24,10 @@ const incomeType = {
   scholarship: "Scholarship",
   gift: "Gift",
   investment: "Investment",
-  other: "Other"
+  other: "Other",
 };
 
 export default function Home() {
-
   const [expense, setExpense] = useState(() => {
     try {
       const saved = localStorage.getItem("expenses");
@@ -74,8 +73,8 @@ export default function Home() {
       {
         id: nanoid(),
         amount: Number(amount),
-        type: type
-      }
+        type: type,
+      },
     ]);
   }
 
@@ -85,22 +84,18 @@ export default function Home() {
       {
         id: nanoid(),
         amount: Number(amount),
-        type: type
-      }
+        type: type,
+      },
     ]);
   }
 
   // DELETE
   function deleteExpense(id) {
-    setExpense((prev) =>
-      prev.filter((item) => item.id !== id)
-    );
+    setExpense((prev) => prev.filter((item) => item.id !== id));
   }
 
   function deleteIncome(id) {
-    setIncome((prev) =>
-      prev.filter((item) => item.id !== id)
-    );
+    setIncome((prev) => prev.filter((item) => item.id !== id));
   }
 
   // EDIT
@@ -111,10 +106,10 @@ export default function Home() {
           ? {
               ...item,
               amount: Number(newAmount),
-              type: newType
+              type: newType,
             }
-          : item
-      )
+          : item,
+      ),
     );
   }
 
@@ -125,10 +120,10 @@ export default function Home() {
           ? {
               ...item,
               amount: Number(newAmount),
-              type: newType
+              type: newType,
             }
-          : item
-      )
+          : item,
+      ),
     );
   }
 
@@ -190,15 +185,9 @@ export default function Home() {
   }
 
   // FINANCIAL SUMMARY
-  const totalIncome = income.reduce(
-    (total, item) => total + item.amount,
-    0
-  );
+  const totalIncome = income.reduce((total, item) => total + item.amount, 0);
 
-  const totalExpense = expense.reduce(
-    (total, item) => total + item.amount,
-    0
-  );
+  const totalExpense = expense.reduce((total, item) => total + item.amount, 0);
 
   const balance = totalIncome - totalExpense;
 
@@ -293,7 +282,7 @@ export default function Home() {
                     <label className="w-40 shrink-0 text-black text-xl font-semibold font-poppins">
                       Transaction Type
                     </label>
-                    <div className="flex-1 px-3 py-1.5 rounded-sm outline-1 outline-black flex justify-start items-center">
+                    <div className="flex-1 px-3 py-1.5 rounded-sm outline-1 outline-black flex justify-start items-center bg-amber-50">
                       <select
                         value={transactionMode}
                         onChange={(e) => changeMode(e.target.value)}
@@ -310,7 +299,7 @@ export default function Home() {
                     <label className="w-40 shrink-0 text-black text-xl font-semibold font-poppins">
                       Amount (Rp)
                     </label>
-                    <div className="flex-1 px-3 py-1.5 rounded-sm outline-1 outline-black flex justify-start items-center">
+                    <div className="flex-1 px-3 py-1.5 rounded-sm outline-1 outline-black flex justify-start items-center bg-amber-50">
                       <input
                         type="number"
                         min="1"
@@ -329,7 +318,7 @@ export default function Home() {
                     <label className="w-40 shrink-0 text-black text-xl font-semibold font-poppins">
                       Category
                     </label>
-                    <div className="flex-1 px-3 py-1.5 rounded-sm outline-1 outline-black flex justify-start items-center">
+                    <div className="flex-1 px-3 py-1.5 rounded-sm outline-1 outline-black flex justify-start items-center bg-amber-50">
                       <select
                         value={type}
                         onChange={(e) => setType(e.target.value)}
@@ -390,8 +379,8 @@ export default function Home() {
                   {expense.map((item) => (
                     <div key={item.id} className="w-full flex flex-col">
                       {editingId === item.id && editingMode === "expense" ? (
-                        <div className="w-full p-3 rounded-lg outline-1 outline-black flex flex-col justify-start items-center gap-2 bg-white/40">
-                          <div className="w-full px-3 py-1.5 rounded-sm outline-1 outline-black flex justify-start items-center bg-white">
+                        <div className="w-full p-3 rounded-lg outline-1 outline-black flex flex-col justify-start items-center gap-2">
+                          <div className="w-full px-3 py-1.5 rounded-sm outline-1 outline-black flex justify-start items-center bg-amber-50">
                             <input
                               type="number"
                               min="1"
@@ -401,7 +390,7 @@ export default function Home() {
                               className="w-full bg-transparent outline-none text-black text-base font-medium font-poppins"
                             />
                           </div>
-                          <div className="w-full px-3 py-1.5 rounded-sm outline-1 outline-black flex justify-start items-center bg-white">
+                          <div className="w-full px-3 py-1.5 rounded-sm outline-1 outline-black flex justify-start items-center bg-amber-50">
                             <select
                               value={editType}
                               onChange={(e) => setEditType(e.target.value)}
@@ -432,7 +421,7 @@ export default function Home() {
                           </div>
                         </div>
                       ) : (
-                        <div className="w-full p-3 rounded-lg outline-1 outline-black flex flex-col justify-between items-center gap-2 bg-white/20 h-full">
+                        <div className="w-full p-3 rounded-lg outline-1 outline-black flex flex-col justify-between items-center gap-2 h-full">
                           <div className="w-full flex flex-col justify-start items-start gap-1">
                             <div className="w-full flex justify-between items-center">
                               <p className="text-black text-sm font-medium font-poppins">
@@ -488,8 +477,8 @@ export default function Home() {
                   {income.map((item) => (
                     <div key={item.id} className="w-full flex flex-col">
                       {editingId === item.id && editingMode === "income" ? (
-                        <div className="w-full p-3 rounded-lg outline-1 outline-black flex flex-col justify-start items-center gap-2 bg-white/40">
-                          <div className="w-full px-3 py-1.5 rounded-sm outline-1 outline-black flex justify-start items-center bg-white">
+                        <div className="w-full p-3 rounded-lg outline-1 outline-black flex flex-col justify-start items-center gap-2">
+                          <div className="w-full px-3 py-1.5 rounded-sm outline-1 outline-black flex justify-start items-center bg-amber-50">
                             <input
                               type="number"
                               min="1"
@@ -499,7 +488,7 @@ export default function Home() {
                               className="w-full bg-transparent outline-none text-black text-base font-medium font-poppins"
                             />
                           </div>
-                          <div className="w-full px-3 py-1.5 rounded-sm outline-1 outline-black flex justify-start items-center bg-white">
+                          <div className="w-full px-3 py-1.5 rounded-sm outline-1 outline-black flex justify-start items-center bg-amber-50">
                             <select
                               value={editType}
                               onChange={(e) => setEditType(e.target.value)}
@@ -530,7 +519,7 @@ export default function Home() {
                           </div>
                         </div>
                       ) : (
-                        <div className="w-full p-3 rounded-lg outline-1 outline-black flex flex-col justify-between items-center gap-2 bg-white/20 h-full">
+                        <div className="w-full p-3 rounded-lg outline-1 outline-black flex flex-col justify-between items-center gap-2 h-full">
                           <div className="w-full flex flex-col justify-start items-start gap-1">
                             <div className="w-full flex justify-between items-center">
                               <p className="text-black text-sm font-medium font-poppins">
