@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { nanoid } from "nanoid";
+import Logo from "../assets/Logo.svg";
 
 // Categories
 const expenseType = {
@@ -193,14 +194,19 @@ export default function Home() {
   return (
     <div>
       {/* HEADER */}
-      <div
+      <header
         id="header"
-        className="w-full px-7 py-2.5 bg-amber-200 border-b border-black flex justify-start items-center"
+        className="w-full px-7 py-2.5 bg-amber-100 border-b border-black flex justify-start items-center gap-2"
       >
+        <img
+          src={Logo}
+          alt="Logo"
+          className="w-7 h-auto shrink-0 object-contain"
+        />
         <p className="justify-center text-black text-2xl font-bold font-poppins">
           PennyWise
         </p>
-      </div>
+      </header>
       {/* MAIN */}
       <div className="w-full p-10 flex justify-start items-start gap-8">
         {/* LEFT */}
@@ -213,13 +219,16 @@ export default function Home() {
             id="financial-summary"
             className="w-full rounded-2xl outline-1 outline-black flex flex-col justify-start items-start overflow-hidden"
           >
+            {/* HEADER */}
             <div className="w-full px-8 py-2 bg-pink-500 rounded-tl-2xl rounded-tr-2xl flex flex-col justify-center items-start gap-2">
-              <h1 className="justify-center bg-linear-to-b from-amber-200 to-white bg-clip-text text-transparent text-3xl font-bold font-poppins">
+              <h1 className="justify-center bg-linear-to-b from-amber-200 to-white bg-clip-text text-transparent text-2xl font-bold font-poppins">
                 Financial Summary
               </h1>
             </div>
 
+            {/* CONTENT CONTAINER */}
             <div className="w-full px-8 py-3 bg-amber-100 rounded-bl-2xl rounded-br-2xl flex justify-center items-center gap-8">
+              {/* CURRENT BALANCE */}
               <div className="w-full flex flex-col justify-start items-start">
                 <h2 className="justify-center text-black text-xl font-semibold font-poppins">
                   Current Balance
@@ -229,6 +238,7 @@ export default function Home() {
                 </p>
               </div>
 
+              {/* TOTAL INCOME */}
               <div className="w-full flex flex-col justify-start items-start">
                 <h2 className="justify-center text-black text-xl font-semibold font-poppins">
                   Total Income
@@ -238,6 +248,7 @@ export default function Home() {
                 </p>
               </div>
 
+              {/* TOTAL EXPENSES */}
               <div className="w-full flex flex-col justify-start items-start">
                 <h2 className="justify-center text-black text-xl font-semibold font-poppins">
                   Total Expenses
@@ -257,20 +268,21 @@ export default function Home() {
             <form onSubmit={handleSubmit} className="w-full">
               {/* HEADER */}
               <div className="w-full px-8 py-3 bg-pink-500 rounded-tl-2xl rounded-tr-2xl flex flex-col justify-center items-start gap-2">
-                <h1 className="bg-linear-to-b from-amber-200 to-white bg-clip-text text-transparent text-3xl font-bold font-poppins">
+                <h1 className="bg-linear-to-b from-amber-200 to-white bg-clip-text text-transparent text-2xl font-bold font-poppins">
                   Add Transaction
                 </h1>
               </div>
 
-              {/* ADD TRANSACTION FORM BODY */}
+              {/* CONTENT CONTAINER */}
               <div className="w-full px-8 py-3 flex flex-col justify-center items-center gap-6">
+                {/* FORM */}
                 <div className="w-full flex flex-col justify-start items-start gap-5">
                   {/* TRANSACTION TYPE */}
                   <div className="w-full flex justify-between items-center gap-4">
                     <label className="w-40 shrink-0 text-black text-xl font-semibold font-poppins">
                       Transaction Type
                     </label>
-                    <div className="flex-1 px-3 py-1.5 bg-amber-100 rounded-sm outline-1 outline-black flex justify-start items-center">
+                    <div className="flex-1 px-3 py-1.5 rounded-sm outline-1 outline-black flex justify-start items-center">
                       <select
                         value={transactionMode}
                         onChange={(e) => changeMode(e.target.value)}
@@ -287,7 +299,7 @@ export default function Home() {
                     <label className="w-40 shrink-0 text-black text-xl font-semibold font-poppins">
                       Amount (Rp)
                     </label>
-                    <div className="flex-1 px-3 py-1.5 bg-amber-100 rounded-sm outline-1 outline-black flex justify-start items-center">
+                    <div className="flex-1 px-3 py-1.5 rounded-sm outline-1 outline-black flex justify-start items-center">
                       <input
                         type="number"
                         min="1"
@@ -306,7 +318,7 @@ export default function Home() {
                     <label className="w-40 shrink-0 text-black text-xl font-semibold font-poppins">
                       Category
                     </label>
-                    <div className="flex-1 px-3 py-1.5 bg-amber-100 rounded-sm outline-1 outline-black flex justify-start items-center">
+                    <div className="flex-1 px-3 py-1.5 rounded-sm outline-1 outline-black flex justify-start items-center">
                       <select
                         value={type}
                         onChange={(e) => setType(e.target.value)}
@@ -338,123 +350,215 @@ export default function Home() {
           </div>
         </div>
 
+        {/* TRANSACTION HISTORY */}
         <div
           id="transaction-history"
-          className="w-full flex flex-col justify-start items-center gap-8"
+          className="w-full max-w-xl rounded-[20px] outline-1 outline-black flex flex-col justify-start items-start overflow-hidden"
         >
-          {/* TRANSACTION HISTORY */}
-          <div className="transaction-history">
-            <h1>Transaction History</h1>
+          {/* HEADER */}
+          <div className="w-full px-8 py-2 bg-pink-500 rounded-tl-[20px] rounded-tr-[20px] flex flex-col justify-center items-start gap-2">
+            <h1 className="bg-linear-to-b from-amber-200 to-white bg-clip-text text-transparent text-2xl font-bold font-poppins">
+              Transaction History
+            </h1>
+          </div>
 
+          {/* CONTENT CONTAINER */}
+          <div className="w-full px-8 py-3 bg-amber-100 flex flex-col justify-center items-start gap-3">
             {/* EXPENSES */}
-            <h3>Expenses</h3>
+            <div className="w-full flex flex-col justify-start items-start gap-3">
+              <h2 className="w-full text-black text-xl font-semibold font-poppins">
+                Expenses
+              </h2>
 
-            {expense.length === 0 && <p>No expenses yet.</p>}
-
-            {expense.map((item) => (
-              <div key={item.id}>
-                {editingId === item.id && editingMode === "expense" ? (
-                  <div>
-                    <input
-                      type="number"
-                      min="1"
-                      step="any"
-                      value={editAmount}
-                      onChange={(e) => setEditAmount(e.target.value)}
-                    />
-
-                    <select
-                      value={editType}
-                      onChange={(e) => setEditType(e.target.value)}
-                    >
-                      {Object.entries(expenseType).map(([key, label]) => (
-                        <option key={key} value={key}>
-                          {label}
-                        </option>
-                      ))}
-                    </select>
-
-                    <button onClick={saveEdit}>Save</button>
-
-                    <button onClick={cancelEdit}>Cancel</button>
-                  </div>
-                ) : (
-                  <div>
-                    <p>Category: {expenseType[item.type]}</p>
-
-                    <p>
-                      Amount: Rp
-                      {item.amount.toLocaleString("id-ID")}
-                    </p>
-
-                    <button onClick={() => startEdit(item, "expense")}>
-                      Edit
-                    </button>
-
-                    <button onClick={() => deleteExpense(item.id)}>
-                      Delete
-                    </button>
-                  </div>
-                )}
-
-                <hr />
-              </div>
-            ))}
+              {expense.length === 0 ? (
+                <p className="text-black text-sm font-medium font-poppins">
+                  No expenses yet.
+                </p>
+              ) : (
+                <div className="w-full grid grid-cols-2 gap-3">
+                  {expense.map((item) => (
+                    <div key={item.id} className="w-full flex flex-col">
+                      {editingId === item.id && editingMode === "expense" ? (
+                        <div className="w-full p-3 rounded-lg outline-1 outline-black flex flex-col justify-start items-center gap-2 bg-white/40">
+                          <div className="w-full px-3 py-1.5 rounded-sm outline-1 outline-black flex justify-start items-center bg-white">
+                            <input
+                              type="number"
+                              min="1"
+                              step="any"
+                              value={editAmount}
+                              onChange={(e) => setEditAmount(e.target.value)}
+                              className="w-full bg-transparent outline-none text-black text-base font-medium font-poppins"
+                            />
+                          </div>
+                          <div className="w-full px-3 py-1.5 rounded-sm outline-1 outline-black flex justify-start items-center bg-white">
+                            <select
+                              value={editType}
+                              onChange={(e) => setEditType(e.target.value)}
+                              className="w-full bg-transparent outline-none text-black text-base font-medium font-poppins"
+                            >
+                              {Object.entries(expenseType).map(
+                                ([key, label]) => (
+                                  <option key={key} value={key}>
+                                    {label}
+                                  </option>
+                                ),
+                              )}
+                            </select>
+                          </div>
+                          <div className="w-full flex justify-center items-center gap-2.5">
+                            <button
+                              onClick={saveEdit}
+                              className="w-full h-9 px-3 py-1 bg-orange-300 rounded-sm outline-1 outline-black flex justify-center items-center text-black text-sm font-medium font-poppins hover:bg-orange-400 transition-colors cursor-pointer"
+                            >
+                              Save
+                            </button>
+                            <button
+                              onClick={cancelEdit}
+                              className="w-full h-9 px-3 py-1 rounded-sm outline-1 outline-red-600 flex justify-center items-center text-red-600 text-sm font-medium font-poppins hover:bg-rose-500 hover:text-white transition-colors cursor-pointer"
+                            >
+                              Cancel
+                            </button>
+                          </div>
+                        </div>
+                      ) : (
+                        <div className="w-full p-3 rounded-lg outline-1 outline-black flex flex-col justify-between items-center gap-2 bg-white/20 h-full">
+                          <div className="w-full flex flex-col justify-start items-start gap-1">
+                            <div className="w-full flex justify-between items-center">
+                              <p className="text-black text-sm font-medium font-poppins">
+                                Category:
+                              </p>
+                              <p className="text-black text-sm font-medium font-poppins">
+                                {expenseType[item.type]}
+                              </p>
+                            </div>
+                            <div className="w-full flex justify-between items-center">
+                              <p className="text-black text-sm font-medium font-poppins">
+                                Amount:
+                              </p>
+                              <p className="text-black text-sm font-medium font-poppins">
+                                Rp{item.amount.toLocaleString("id-ID")}
+                              </p>
+                            </div>
+                          </div>
+                          <div className="w-full flex justify-center items-center gap-2.5 mt-1">
+                            <button
+                              onClick={() => startEdit(item, "expense")}
+                              className="w-full h-9 px-3 py-1 bg-orange-300 rounded-sm outline-1 outline-black flex justify-center items-center text-black text-sm font-medium font-poppins hover:bg-orange-400 transition-colors cursor-pointer"
+                            >
+                              Edit
+                            </button>
+                            <button
+                              onClick={() => deleteExpense(item.id)}
+                              className="w-full h-9 px-3 py-1 rounded-sm outline-1 outline-red-600 flex justify-center items-center text-red-600 text-sm font-medium font-poppins hover:bg-rose-600 hover:text-white transition-colors cursor-pointer"
+                            >
+                              Delete
+                            </button>
+                          </div>
+                        </div>
+                      )}
+                    </div>
+                  ))}
+                </div>
+              )}
+            </div>
 
             {/* INCOME */}
-            <h3>Income</h3>
+            <div className="w-full flex flex-col justify-start items-start gap-3 mt-2">
+              <h2 className="w-full text-black text-xl font-semibold font-poppins">
+                Income
+              </h2>
 
-            {income.length === 0 && <p>No income yet.</p>}
-
-            {income.map((item) => (
-              <div key={item.id}>
-                {editingId === item.id && editingMode === "income" ? (
-                  <div>
-                    <input
-                      type="number"
-                      min="1"
-                      step="any"
-                      value={editAmount}
-                      onChange={(e) => setEditAmount(e.target.value)}
-                    />
-
-                    <select
-                      value={editType}
-                      onChange={(e) => setEditType(e.target.value)}
-                    >
-                      {Object.entries(incomeType).map(([key, label]) => (
-                        <option key={key} value={key}>
-                          {label}
-                        </option>
-                      ))}
-                    </select>
-
-                    <button onClick={saveEdit}>Save</button>
-
-                    <button onClick={cancelEdit}>Cancel</button>
-                  </div>
-                ) : (
-                  <div>
-                    <p>Category: {incomeType[item.type]}</p>
-
-                    <p>
-                      Amount: Rp
-                      {item.amount.toLocaleString("id-ID")}
-                    </p>
-
-                    <button onClick={() => startEdit(item, "income")}>
-                      Edit
-                    </button>
-
-                    <button onClick={() => deleteIncome(item.id)}>
-                      Delete
-                    </button>
-                  </div>
-                )}
-
-                <hr />
-              </div>
-            ))}
+              {income.length === 0 ? (
+                <p className="text-black text-sm font-medium font-poppins">
+                  No income yet.
+                </p>
+              ) : (
+                <div className="w-full grid grid-cols-2 gap-3">
+                  {income.map((item) => (
+                    <div key={item.id} className="w-full flex flex-col">
+                      {editingId === item.id && editingMode === "income" ? (
+                        <div className="w-full p-3 rounded-lg outline-1 outline-black flex flex-col justify-start items-center gap-2 bg-white/40">
+                          <div className="w-full px-3 py-1.5 rounded-sm outline-1 outline-black flex justify-start items-center bg-white">
+                            <input
+                              type="number"
+                              min="1"
+                              step="any"
+                              value={editAmount}
+                              onChange={(e) => setEditAmount(e.target.value)}
+                              className="w-full bg-transparent outline-none text-black text-base font-medium font-poppins"
+                            />
+                          </div>
+                          <div className="w-full px-3 py-1.5 rounded-sm outline-1 outline-black flex justify-start items-center bg-white">
+                            <select
+                              value={editType}
+                              onChange={(e) => setEditType(e.target.value)}
+                              className="w-full bg-transparent outline-none text-black text-base font-medium font-poppins"
+                            >
+                              {Object.entries(incomeType).map(
+                                ([key, label]) => (
+                                  <option key={key} value={key}>
+                                    {label}
+                                  </option>
+                                ),
+                              )}
+                            </select>
+                          </div>
+                          <div className="w-full flex justify-center items-center gap-2.5">
+                            <button
+                              onClick={saveEdit}
+                              className="w-full h-9 px-3 py-1 bg-orange-300 rounded-sm outline-1 outline-black flex justify-center items-center text-black text-sm font-medium font-poppins hover:bg-orange-400 transition-colors cursor-pointer"
+                            >
+                              Save
+                            </button>
+                            <button
+                              onClick={cancelEdit}
+                              className="w-full h-9 px-3 py-1 rounded-sm outline-1 outline-red-600 flex justify-center items-center text-red-600 text-sm font-medium font-poppins hover:bg-rose-500 hover:text-white transition-colors cursor-pointer"
+                            >
+                              Cancel
+                            </button>
+                          </div>
+                        </div>
+                      ) : (
+                        <div className="w-full p-3 rounded-lg outline-1 outline-black flex flex-col justify-between items-center gap-2 bg-white/20 h-full">
+                          <div className="w-full flex flex-col justify-start items-start gap-1">
+                            <div className="w-full flex justify-between items-center">
+                              <p className="text-black text-sm font-medium font-poppins">
+                                Category:
+                              </p>
+                              <p className="text-black text-sm font-medium font-poppins">
+                                {incomeType[item.type]}
+                              </p>
+                            </div>
+                            <div className="w-full flex justify-between items-center">
+                              <p className="text-black text-sm font-medium font-poppins">
+                                Amount:
+                              </p>
+                              <p className="text-black text-sm font-medium font-poppins">
+                                Rp{item.amount.toLocaleString("id-ID")}
+                              </p>
+                            </div>
+                          </div>
+                          <div className="w-full flex justify-center items-center gap-2.5 mt-1">
+                            <button
+                              onClick={() => startEdit(item, "income")}
+                              className="w-full h-9 px-3 py-1 bg-orange-300 rounded-sm outline-1 outline-black flex justify-center items-center text-black text-sm font-medium font-poppins hover:bg-orange-400 transition-colors cursor-pointer"
+                            >
+                              Edit
+                            </button>
+                            <button
+                              onClick={() => deleteIncome(item.id)}
+                              className="w-full h-9 px-3 py-1 rounded-sm outline-1 outline-red-600 flex justify-center items-center text-red-600 text-sm font-medium font-poppins hover:bg-rose-600 hover:text-white transition-colors cursor-pointer"
+                            >
+                              Delete
+                            </button>
+                          </div>
+                        </div>
+                      )}
+                    </div>
+                  ))}
+                </div>
+              )}
+            </div>
           </div>
         </div>
       </div>
