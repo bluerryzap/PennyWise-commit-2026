@@ -13,7 +13,7 @@ const expenseType = {
   bills: "Bills & Subscriptions",
   health: "Health & Personal Care",
   savings: "Savings",
-  other: "Other",
+  other: "Other"
 };
 
 const incomeType = {
@@ -24,10 +24,11 @@ const incomeType = {
   scholarship: "Scholarship",
   gift: "Gift",
   investment: "Investment",
-  other: "Other",
+  other: "Other"
 };
 
 export default function Home() {
+
   const [expense, setExpense] = useState(() => {
     try {
       const saved = localStorage.getItem("expenses");
@@ -73,8 +74,8 @@ export default function Home() {
       {
         id: nanoid(),
         amount: Number(amount),
-        type: type,
-      },
+        type: type
+      }
     ]);
   }
 
@@ -84,18 +85,22 @@ export default function Home() {
       {
         id: nanoid(),
         amount: Number(amount),
-        type: type,
-      },
+        type: type
+      }
     ]);
   }
 
   // DELETE
   function deleteExpense(id) {
-    setExpense((prev) => prev.filter((item) => item.id !== id));
+    setExpense((prev) =>
+      prev.filter((item) => item.id !== id)
+    );
   }
 
   function deleteIncome(id) {
-    setIncome((prev) => prev.filter((item) => item.id !== id));
+    setIncome((prev) =>
+      prev.filter((item) => item.id !== id)
+    );
   }
 
   // EDIT
@@ -106,10 +111,10 @@ export default function Home() {
           ? {
               ...item,
               amount: Number(newAmount),
-              type: newType,
+              type: newType
             }
-          : item,
-      ),
+          : item
+      )
     );
   }
 
@@ -120,10 +125,10 @@ export default function Home() {
           ? {
               ...item,
               amount: Number(newAmount),
-              type: newType,
+              type: newType
             }
-          : item,
-      ),
+          : item
+      )
     );
   }
 
@@ -185,9 +190,15 @@ export default function Home() {
   }
 
   // FINANCIAL SUMMARY
-  const totalIncome = income.reduce((total, item) => total + item.amount, 0);
+  const totalIncome = income.reduce(
+    (total, item) => total + item.amount,
+    0
+  );
 
-  const totalExpense = expense.reduce((total, item) => total + item.amount, 0);
+  const totalExpense = expense.reduce(
+    (total, item) => total + item.amount,
+    0
+  );
 
   const balance = totalIncome - totalExpense;
 
