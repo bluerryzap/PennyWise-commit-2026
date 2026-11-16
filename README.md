@@ -5,9 +5,9 @@ Website pencatat keuangan pribadi untuk mahasiswa.
 ## Tim
 - Nama Tim: Nama timnya mau yg bener apa yg gajelas
 - Anggota:
-    - Ajwa Fadhila Zulfa (26/583353/PA/24485) - Mendesain website dan kode program CSS
-    - Khaira Denisa (26/586577/PA/24693) - Kode program Javascript
-    - Lumongga Anandita Helmy  (26/587341/PA/24756) - Mendesain website dan edit README
+    - Ajwa Fadhila Zulfa (26/583353/PA/24485) - Mendesain UI/UX dan kode program CSS
+    - Khaira Denisa (26/586577/PA/24693) - Kode program JavaScript
+    - Lumongga Anandita Helmy  (26/587341/PA/24756) - Mendesain UI/UX dan edit README
     - Audina Dwiyunita Putri (26/587248/PA/24748) - Membuat laporan
 
 ## Deskripsi
