@@ -13,7 +13,7 @@ const expenseType = {
   bills: "Bills & Subscriptions",
   health: "Health & Personal Care",
   savings: "Savings",
-  other: "Other"
+  other: "Other",
 };
 
 const incomeType = {
@@ -24,11 +24,10 @@ const incomeType = {
   scholarship: "Scholarship",
   gift: "Gift",
   investment: "Investment",
-  other: "Other"
+  other: "Other",
 };
 
 export default function Home() {
-
   const [expense, setExpense] = useState(() => {
     try {
       const saved = localStorage.getItem("expenses");
@@ -74,8 +73,8 @@ export default function Home() {
       {
         id: nanoid(),
         amount: Number(amount),
-        type: type
-      }
+        type: type,
+      },
     ]);
   }
 
@@ -85,22 +84,18 @@ export default function Home() {
       {
         id: nanoid(),
         amount: Number(amount),
-        type: type
-      }
+        type: type,
+      },
     ]);
   }
 
   // DELETE
   function deleteExpense(id) {
-    setExpense((prev) =>
-      prev.filter((item) => item.id !== id)
-    );
+    setExpense((prev) => prev.filter((item) => item.id !== id));
   }
 
   function deleteIncome(id) {
-    setIncome((prev) =>
-      prev.filter((item) => item.id !== id)
-    );
+    setIncome((prev) => prev.filter((item) => item.id !== id));
   }
 
   // EDIT
@@ -111,10 +106,10 @@ export default function Home() {
           ? {
               ...item,
               amount: Number(newAmount),
-              type: newType
+              type: newType,
             }
-          : item
-      )
+          : item,
+      ),
     );
   }
 
@@ -125,10 +120,10 @@ export default function Home() {
           ? {
               ...item,
               amount: Number(newAmount),
-              type: newType
+              type: newType,
             }
-          : item
-      )
+          : item,
+      ),
     );
   }
 
@@ -190,17 +185,22 @@ export default function Home() {
   }
 
   // FINANCIAL SUMMARY
-  const totalIncome = income.reduce(
-    (total, item) => total + item.amount,
-    0
-  );
+  const totalIncome = income.reduce((total, item) => total + item.amount, 0);
 
-  const totalExpense = expense.reduce(
-    (total, item) => total + item.amount,
-    0
-  );
+  const totalExpense = expense.reduce((total, item) => total + item.amount, 0);
 
   const balance = totalIncome - totalExpense;
+
+  function deleteAll() {
+    const confirmDelete = window.confirm(
+      "Are you sure you want to delete ALL transactions? This action cannot be undone.",
+    );
+
+    if (confirmDelete) {
+      setExpense([]);
+      setIncome([]);
+    }
+  }
 
   return (
     <div>
@@ -293,7 +293,7 @@ export default function Home() {
                     <label className="w-40 shrink-0 text-black text-xl font-semibold font-poppins">
                       Transaction Type
                     </label>
-                    <div className="flex-1 px-3 py-1.5 rounded-sm outline-1 outline-black flex justify-start items-center">
+                    <div className="flex-1 px-3 py-1.5 rounded-sm outline-1 outline-black flex justify-start items-center bg-amber-50">
                       <select
                         value={transactionMode}
                         onChange={(e) => changeMode(e.target.value)}
@@ -310,7 +310,7 @@ export default function Home() {
                     <label className="w-40 shrink-0 text-black text-xl font-semibold font-poppins">
                       Amount (Rp)
                     </label>
-                    <div className="flex-1 px-3 py-1.5 rounded-sm outline-1 outline-black flex justify-start items-center">
+                    <div className="flex-1 px-3 py-1.5 rounded-sm outline-1 outline-black flex justify-start items-center bg-amber-50">
                       <input
                         type="number"
                         min="1"
@@ -329,7 +329,7 @@ export default function Home() {
                     <label className="w-40 shrink-0 text-black text-xl font-semibold font-poppins">
                       Category
                     </label>
-                    <div className="flex-1 px-3 py-1.5 rounded-sm outline-1 outline-black flex justify-start items-center">
+                    <div className="flex-1 px-3 py-1.5 rounded-sm outline-1 outline-black flex justify-start items-center bg-amber-50">
                       <select
                         value={type}
                         onChange={(e) => setType(e.target.value)}
@@ -364,7 +364,7 @@ export default function Home() {
         {/* TRANSACTION HISTORY */}
         <div
           id="transaction-history"
-          className="w-full max-w-xl rounded-[20px] outline-1 outline-black flex flex-col justify-start items-start overflow-hidden"
+          className="w-full rounded-[20px] outline-1 outline-black flex flex-col justify-start items-start"
         >
           {/* HEADER */}
           <div className="w-full px-8 py-2 bg-pink-500 rounded-tl-[20px] rounded-tr-[20px] flex flex-col justify-center items-start gap-2">
@@ -374,7 +374,7 @@ export default function Home() {
           </div>
 
           {/* CONTENT CONTAINER */}
-          <div className="w-full px-8 py-3 bg-amber-100 flex flex-col justify-center items-start gap-3">
+          <div className="w-full max-h-[60vh] overflow-y-auto px-8 py-3 bg-amber-100 flex flex-col justify-start items-start gap-4">
             {/* EXPENSES */}
             <div className="w-full flex flex-col justify-start items-start gap-3">
               <h2 className="w-full text-black text-xl font-semibold font-poppins">
@@ -390,8 +390,8 @@ export default function Home() {
                   {expense.map((item) => (
                     <div key={item.id} className="w-full flex flex-col">
                       {editingId === item.id && editingMode === "expense" ? (
-                        <div className="w-full p-3 rounded-lg outline-1 outline-black flex flex-col justify-start items-center gap-2 bg-white/40">
-                          <div className="w-full px-3 py-1.5 rounded-sm outline-1 outline-black flex justify-start items-center bg-white">
+                        <div className="w-full p-3 rounded-lg outline-1 outline-black flex flex-col justify-start items-center gap-2">
+                          <div className="w-full px-3 py-1.5 rounded-sm outline-1 outline-black flex justify-start items-center bg-amber-50">
                             <input
                               type="number"
                               min="1"
@@ -401,7 +401,7 @@ export default function Home() {
                               className="w-full bg-transparent outline-none text-black text-base font-medium font-poppins"
                             />
                           </div>
-                          <div className="w-full px-3 py-1.5 rounded-sm outline-1 outline-black flex justify-start items-center bg-white">
+                          <div className="w-full px-3 py-1.5 rounded-sm outline-1 outline-black flex justify-start items-center bg-amber-50">
                             <select
                               value={editType}
                               onChange={(e) => setEditType(e.target.value)}
@@ -419,20 +419,20 @@ export default function Home() {
                           <div className="w-full flex justify-center items-center gap-2.5">
                             <button
                               onClick={saveEdit}
-                              className="w-full h-9 px-3 py-1 bg-orange-300 rounded-sm outline-1 outline-black flex justify-center items-center text-black text-sm font-medium font-poppins hover:bg-orange-400 transition-colors cursor-pointer"
+                              className="w-full px-3 py-1 bg-orange-300 rounded-sm outline-1 outline-black flex justify-center items-center text-black text-sm font-medium font-poppins hover:bg-orange-400 transition-colors cursor-pointer"
                             >
                               Save
                             </button>
                             <button
                               onClick={cancelEdit}
-                              className="w-full h-9 px-3 py-1 rounded-sm outline-1 outline-red-600 flex justify-center items-center text-red-600 text-sm font-medium font-poppins hover:bg-rose-500 hover:text-white transition-colors cursor-pointer"
+                              className="w-full px-3 py-1 rounded-sm bg-rose-200 outline-1 outline-red-600 flex justify-center items-center text-red-600 text-sm font-medium font-poppins hover:bg-rose-500 hover:text-white transition-colors cursor-pointer"
                             >
                               Cancel
                             </button>
                           </div>
                         </div>
                       ) : (
-                        <div className="w-full p-3 rounded-lg outline-1 outline-black flex flex-col justify-between items-center gap-2 bg-white/20 h-full">
+                        <div className="w-full p-3 rounded-lg outline-1 outline-black flex flex-col justify-between items-center gap-2 h-full">
                           <div className="w-full flex flex-col justify-start items-start gap-1">
                             <div className="w-full flex justify-between items-center">
                               <p className="text-black text-sm font-medium font-poppins">
@@ -454,13 +454,13 @@ export default function Home() {
                           <div className="w-full flex justify-center items-center gap-2.5 mt-1">
                             <button
                               onClick={() => startEdit(item, "expense")}
-                              className="w-full h-9 px-3 py-1 bg-orange-300 rounded-sm outline-1 outline-black flex justify-center items-center text-black text-sm font-medium font-poppins hover:bg-orange-400 transition-colors cursor-pointer"
+                              className="w-full px-3 py-1 bg-orange-300 rounded-sm outline-1 outline-black flex justify-center items-center text-black text-sm font-medium font-poppins hover:bg-orange-400 transition-colors cursor-pointer"
                             >
                               Edit
                             </button>
                             <button
                               onClick={() => deleteExpense(item.id)}
-                              className="w-full h-9 px-3 py-1 rounded-sm outline-1 outline-red-600 flex justify-center items-center text-red-600 text-sm font-medium font-poppins hover:bg-rose-600 hover:text-white transition-colors cursor-pointer"
+                              className="w-full px-3 py-1 rounded-sm outline-1 bg-rose-200 outline-red-600 flex justify-center items-center text-red-600 text-sm font-medium font-poppins hover:bg-rose-600 hover:text-white transition-colors cursor-pointer"
                             >
                               Delete
                             </button>
@@ -488,8 +488,8 @@ export default function Home() {
                   {income.map((item) => (
                     <div key={item.id} className="w-full flex flex-col">
                       {editingId === item.id && editingMode === "income" ? (
-                        <div className="w-full p-3 rounded-lg outline-1 outline-black flex flex-col justify-start items-center gap-2 bg-white/40">
-                          <div className="w-full px-3 py-1.5 rounded-sm outline-1 outline-black flex justify-start items-center bg-white">
+                        <div className="w-full p-3 rounded-lg outline-1 outline-black flex flex-col justify-start items-center gap-2">
+                          <div className="w-full px-3 py-1.5 rounded-sm outline-1 outline-black flex justify-start items-center bg-amber-50">
                             <input
                               type="number"
                               min="1"
@@ -499,7 +499,7 @@ export default function Home() {
                               className="w-full bg-transparent outline-none text-black text-base font-medium font-poppins"
                             />
                           </div>
-                          <div className="w-full px-3 py-1.5 rounded-sm outline-1 outline-black flex justify-start items-center bg-white">
+                          <div className="w-full px-3 py-1.5 rounded-sm outline-1 outline-black flex justify-start items-center bg-amber-50">
                             <select
                               value={editType}
                               onChange={(e) => setEditType(e.target.value)}
@@ -517,20 +517,20 @@ export default function Home() {
                           <div className="w-full flex justify-center items-center gap-2.5">
                             <button
                               onClick={saveEdit}
-                              className="w-full h-9 px-3 py-1 bg-orange-300 rounded-sm outline-1 outline-black flex justify-center items-center text-black text-sm font-medium font-poppins hover:bg-orange-400 transition-colors cursor-pointer"
+                              className="w-full px-3 py-1 bg-orange-300 rounded-sm outline-1 outline-black flex justify-center items-center text-black text-sm font-medium font-poppins hover:bg-orange-400 transition-colors cursor-pointer"
                             >
                               Save
                             </button>
                             <button
                               onClick={cancelEdit}
-                              className="w-full h-9 px-3 py-1 rounded-sm outline-1 outline-red-600 flex justify-center items-center text-red-600 text-sm font-medium font-poppins hover:bg-rose-500 hover:text-white transition-colors cursor-pointer"
+                              className="w-full px-3 py-1 rounded-sm bg-rose-200 outline-1 outline-red-600 flex justify-center items-center text-red-600 text-sm font-medium font-poppins hover:bg-rose-500 hover:text-white transition-colors cursor-pointer"
                             >
                               Cancel
                             </button>
                           </div>
                         </div>
                       ) : (
-                        <div className="w-full p-3 rounded-lg outline-1 outline-black flex flex-col justify-between items-center gap-2 bg-white/20 h-full">
+                        <div className="w-full p-3 rounded-lg outline-1 outline-black flex flex-col justify-between items-center gap-2 h-full">
                           <div className="w-full flex flex-col justify-start items-start gap-1">
                             <div className="w-full flex justify-between items-center">
                               <p className="text-black text-sm font-medium font-poppins">
@@ -552,13 +552,13 @@ export default function Home() {
                           <div className="w-full flex justify-center items-center gap-2.5 mt-1">
                             <button
                               onClick={() => startEdit(item, "income")}
-                              className="w-full h-9 px-3 py-1 bg-orange-300 rounded-sm outline-1 outline-black flex justify-center items-center text-black text-sm font-medium font-poppins hover:bg-orange-400 transition-colors cursor-pointer"
+                              className="w-full px-3 py-1 bg-orange-300 rounded-sm outline-1 outline-black flex justify-center items-center text-black text-sm font-medium font-poppins hover:bg-orange-400 transition-colors cursor-pointer"
                             >
                               Edit
                             </button>
                             <button
                               onClick={() => deleteIncome(item.id)}
-                              className="w-full h-9 px-3 py-1 rounded-sm outline-1 outline-red-600 flex justify-center items-center text-red-600 text-sm font-medium font-poppins hover:bg-rose-600 hover:text-white transition-colors cursor-pointer"
+                              className="w-full px-3 py-1 rounded-sm bg-rose-200 outline-1 outline-red-600 flex justify-center items-center text-red-600 text-sm font-medium font-poppins hover:bg-rose-600 hover:text-white transition-colors cursor-pointer"
                             >
                               Delete
                             </button>
@@ -569,6 +569,23 @@ export default function Home() {
                   ))}
                 </div>
               )}
+            </div>
+          </div>
+          {/* DELETE ALL TRANSACTION */}
+          <div className="w-full p-8 bg-amber-100 flex flex-col rounded-bl-[20px] rounded-br-[20px] justify-center items-start gap-3">
+            <div className="w-full flex justify-center items-center gap-2.5">
+              <button
+                onClick={deleteAll}
+                disabled={expense.length === 0 && income.length === 0}
+                className="w-full px-3 py-1 rounded-sm outline-1 outline-red-600 
+             bg-rose-200 text-red-600
+             font-medium font-poppins
+             hover:bg-red-600 hover:text-white transition-colors
+             cursor-pointer
+             disabled:opacity-50 disabled:cursor-not-allowed"
+              >
+                Delete All Transactions
+              </button>
             </div>
           </div>
         </div>
