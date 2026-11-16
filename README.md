@@ -11,7 +11,7 @@ Website pencatat keuangan pribadi untuk mahasiswa.
     - Audina Dwiyunita Putri (26/587248/PA/24748) - Membuat laporan
 
 ## Deskripsi
-PennyWise merupakan website pencatat keuangan pribadi yang praktis dan ramah bagi mahasiswa. Website ini memiliki beberapa fitur seperti:
+"PennyWise" merupakan website pencatat keuangan pribadi yang praktis dan ramah bagi mahasiswa. Website ini memiliki beberapa fitur seperti:
 - Ringkasan keuangan yang terdapat saldo terkini, total pemasukan dan pengeluaran.
 - Menambahkan jenis transaksi seperti pengeluaran dan pemasukan dengan nominal dan kategorinya.
 - Menampilkan seluruh riwayat transaksi termasuk pengeluaran dan pemasukan. Serta dapat mengedit dan menghapus riwayat.
