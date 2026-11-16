@@ -191,6 +191,17 @@ export default function Home() {
 
   const balance = totalIncome - totalExpense;
 
+  function deleteAll() {
+    const confirmDelete = window.confirm(
+      "Are you sure you want to delete ALL transactions? This action cannot be undone.",
+    );
+
+    if (confirmDelete) {
+      setExpense([]);
+      setIncome([]);
+    }
+  }
+
   return (
     <div>
       {/* HEADER */}
@@ -214,6 +225,20 @@ export default function Home() {
           id="financial-summary-and-add-transaction"
           className="w-full flex flex-col justify-start items-start gap-8"
         >
+          <button
+            onClick={deleteAll}
+            disabled={expense.length === 0 && income.length === 0}
+            className="fixed bottom-6 left-6 z-50
+             px-2 py-1
+             bg-rose-300 text-rose-600
+             rounded-lg border border-rose-400
+             font-medium font-poppins
+             hover:bg-rose-400 transition-colors
+             cursor-pointer
+             disabled:opacity-50 disabled:cursor-not-allowed"
+          >
+            Delete All Transactions
+          </button>
           {/* FINANCIAL SUMMARY */}
           <div
             id="financial-summary"
@@ -353,7 +378,7 @@ export default function Home() {
         {/* TRANSACTION HISTORY */}
         <div
           id="transaction-history"
-          className="w-full max-w-xl rounded-[20px] outline-1 outline-black flex flex-col justify-start items-start overflow-hidden"
+          className="w-full max-w-xl max-h-[80vh] overflow-y-auto rounded-[20px] outline-1 outline-black flex flex-col justify-start items-start"
         >
           {/* HEADER */}
           <div className="w-full px-8 py-2 bg-pink-500 rounded-tl-[20px] rounded-tr-[20px] flex flex-col justify-center items-start gap-2">
