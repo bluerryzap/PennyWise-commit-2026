@@ -55,27 +55,34 @@ npm run preview
 ## Struktur proyek
 
 ```text
-src/
-├── app.jsx
-├── main.jsx
-├── index.css
-├── components/
-│   └── hero.jsx
-└── pages/
-    └── home.jsx
+.
+├── index.html
+├── package.json
+├── postcss.config.cjs
+├── tailwind.config.mjs
+├── vite.config.mjs
+└── src/
+    ├── app.jsx
+    ├── index.css
+    ├── main.jsx
+    ├── assets/
+    │   └── Logo.svg
+    └── pages/
+        └── home.jsx
 ```
 
 - `src/main.jsx` memasang aplikasi React pada elemen `#root` dan mengimpor CSS.
 - `src/app.jsx` menjadi komponen aplikasi utama.
-- `src/pages/home.jsx` menyusun halaman utama.
-- `src/components/hero.jsx` menampilkan bagian hero.
-- `src/index.css` mengimpor Tailwind CSS v4.
+- `src/pages/home.jsx` memuat ringkasan keuangan, formulir, dan riwayat transaksi.
+- `src/assets/Logo.svg` adalah logo yang digunakan pada header.
+- `src/index.css` mengimpor Tailwind CSS.
 
 ## Konfigurasi
 
-- `postcss.config.cjs` menggunakan format CommonJS yang sesuai dengan `"type": "commonjs"` pada `package.json`, dan memuat plugin `@tailwindcss/postcss` serta Autoprefixer.
-- `vite.config.mjs` dan `tailwind.config.mjs` menggunakan ekstensi `.mjs` agar sintaks ESM-nya dikenali.
-- Konfigurasi Tailwind berada di `tailwind.config.mjs`; CSS mengimpor Tailwind melalui `@import "tailwindcss";` di `src/index.css`.
+- `vite.config.mjs` mengaktifkan plugin React untuk Vite.
+- `postcss.config.cjs` menggunakan CommonJS sesuai `"type": "commonjs"` di `package.json`, dengan plugin `@tailwindcss/postcss` dan Autoprefixer.
+- `src/index.css` memuat Tailwind CSS v4 melalui `@import "tailwindcss";`.
+- `tailwind.config.mjs` berisi pengaturan `content`, tema, dan plugin. Tailwind CSS v4 tidak otomatis memuat konfigurasi JavaScript ini; tambahkan direktif `@config` di CSS jika pengaturan tersebut ingin diterapkan.
 
 Build produksi dapat dibuat dengan `npm run build`.
 
