@@ -225,20 +225,6 @@ export default function Home() {
           id="financial-summary-and-add-transaction"
           className="w-full flex flex-col justify-start items-start gap-8"
         >
-          <button
-            onClick={deleteAll}
-            disabled={expense.length === 0 && income.length === 0}
-            className="fixed bottom-6 left-6 z-50
-             px-2 py-1
-             bg-rose-300 text-rose-600
-             rounded-lg border border-rose-400
-             font-medium font-poppins
-             hover:bg-rose-400 transition-colors
-             cursor-pointer
-             disabled:opacity-50 disabled:cursor-not-allowed"
-          >
-            Delete All Transactions
-          </button>
           {/* FINANCIAL SUMMARY */}
           <div
             id="financial-summary"
@@ -378,7 +364,7 @@ export default function Home() {
         {/* TRANSACTION HISTORY */}
         <div
           id="transaction-history"
-          className="w-full max-w-xl max-h-[80vh] overflow-y-auto rounded-[20px] outline-1 outline-black flex flex-col justify-start items-start"
+          className="w-full rounded-[20px] outline-1 outline-black flex flex-col justify-start items-start"
         >
           {/* HEADER */}
           <div className="w-full px-8 py-2 bg-pink-500 rounded-tl-[20px] rounded-tr-[20px] flex flex-col justify-center items-start gap-2">
@@ -388,7 +374,7 @@ export default function Home() {
           </div>
 
           {/* CONTENT CONTAINER */}
-          <div className="w-full px-8 py-3 bg-amber-100 flex flex-col justify-center items-start gap-3">
+          <div className="w-full max-h-[90vh] overflow-y-auto px-8 py-3 bg-amber-100 flex flex-col justify-start items-start gap-4">
             {/* EXPENSES */}
             <div className="w-full flex flex-col justify-start items-start gap-3">
               <h2 className="w-full text-black text-xl font-semibold font-poppins">
@@ -433,13 +419,13 @@ export default function Home() {
                           <div className="w-full flex justify-center items-center gap-2.5">
                             <button
                               onClick={saveEdit}
-                              className="w-full h-9 px-3 py-1 bg-orange-300 rounded-sm outline-1 outline-black flex justify-center items-center text-black text-sm font-medium font-poppins hover:bg-orange-400 transition-colors cursor-pointer"
+                              className="w-full px-3 py-1 bg-orange-300 rounded-sm outline-1 outline-black flex justify-center items-center text-black text-sm font-medium font-poppins hover:bg-orange-400 transition-colors cursor-pointer"
                             >
                               Save
                             </button>
                             <button
                               onClick={cancelEdit}
-                              className="w-full h-9 px-3 py-1 rounded-sm outline-1 outline-red-600 flex justify-center items-center text-red-600 text-sm font-medium font-poppins hover:bg-rose-500 hover:text-white transition-colors cursor-pointer"
+                              className="w-full px-3 py-1 rounded-sm bg-rose-200 outline-1 outline-red-600 flex justify-center items-center text-red-600 text-sm font-medium font-poppins hover:bg-rose-500 hover:text-white transition-colors cursor-pointer"
                             >
                               Cancel
                             </button>
@@ -468,13 +454,13 @@ export default function Home() {
                           <div className="w-full flex justify-center items-center gap-2.5 mt-1">
                             <button
                               onClick={() => startEdit(item, "expense")}
-                              className="w-full h-9 px-3 py-1 bg-orange-300 rounded-sm outline-1 outline-black flex justify-center items-center text-black text-sm font-medium font-poppins hover:bg-orange-400 transition-colors cursor-pointer"
+                              className="w-full px-3 py-1 bg-orange-300 rounded-sm outline-1 outline-black flex justify-center items-center text-black text-sm font-medium font-poppins hover:bg-orange-400 transition-colors cursor-pointer"
                             >
                               Edit
                             </button>
                             <button
                               onClick={() => deleteExpense(item.id)}
-                              className="w-full h-9 px-3 py-1 rounded-sm outline-1 outline-red-600 flex justify-center items-center text-red-600 text-sm font-medium font-poppins hover:bg-rose-600 hover:text-white transition-colors cursor-pointer"
+                              className="w-full px-3 py-1 rounded-sm outline-1 bg-rose-200 outline-red-600 flex justify-center items-center text-red-600 text-sm font-medium font-poppins hover:bg-rose-600 hover:text-white transition-colors cursor-pointer"
                             >
                               Delete
                             </button>
@@ -531,13 +517,13 @@ export default function Home() {
                           <div className="w-full flex justify-center items-center gap-2.5">
                             <button
                               onClick={saveEdit}
-                              className="w-full h-9 px-3 py-1 bg-orange-300 rounded-sm outline-1 outline-black flex justify-center items-center text-black text-sm font-medium font-poppins hover:bg-orange-400 transition-colors cursor-pointer"
+                              className="w-full px-3 py-1 bg-orange-300 rounded-sm outline-1 outline-black flex justify-center items-center text-black text-sm font-medium font-poppins hover:bg-orange-400 transition-colors cursor-pointer"
                             >
                               Save
                             </button>
                             <button
                               onClick={cancelEdit}
-                              className="w-full h-9 px-3 py-1 rounded-sm outline-1 outline-red-600 flex justify-center items-center text-red-600 text-sm font-medium font-poppins hover:bg-rose-500 hover:text-white transition-colors cursor-pointer"
+                              className="w-full px-3 py-1 rounded-sm bg-rose-200 outline-1 outline-red-600 flex justify-center items-center text-red-600 text-sm font-medium font-poppins hover:bg-rose-500 hover:text-white transition-colors cursor-pointer"
                             >
                               Cancel
                             </button>
@@ -566,13 +552,13 @@ export default function Home() {
                           <div className="w-full flex justify-center items-center gap-2.5 mt-1">
                             <button
                               onClick={() => startEdit(item, "income")}
-                              className="w-full h-9 px-3 py-1 bg-orange-300 rounded-sm outline-1 outline-black flex justify-center items-center text-black text-sm font-medium font-poppins hover:bg-orange-400 transition-colors cursor-pointer"
+                              className="w-full px-3 py-1 bg-orange-300 rounded-sm outline-1 outline-black flex justify-center items-center text-black text-sm font-medium font-poppins hover:bg-orange-400 transition-colors cursor-pointer"
                             >
                               Edit
                             </button>
                             <button
                               onClick={() => deleteIncome(item.id)}
-                              className="w-full h-9 px-3 py-1 rounded-sm outline-1 outline-red-600 flex justify-center items-center text-red-600 text-sm font-medium font-poppins hover:bg-rose-600 hover:text-white transition-colors cursor-pointer"
+                              className="w-full px-3 py-1 rounded-sm bg-rose-200 outline-1 outline-red-600 flex justify-center items-center text-red-600 text-sm font-medium font-poppins hover:bg-rose-600 hover:text-white transition-colors cursor-pointer"
                             >
                               Delete
                             </button>
@@ -583,6 +569,23 @@ export default function Home() {
                   ))}
                 </div>
               )}
+            </div>
+          </div>
+          {/* DELETE ALL TRANSACTION */}
+          <div className="w-full p-8 bg-amber-100 flex flex-col rounded-bl-[20px] rounded-br-[20px] justify-center items-start gap-3">
+            <div className="w-full flex justify-center items-center gap-2.5">
+              <button
+                onClick={deleteAll}
+                disabled={expense.length === 0 && income.length === 0}
+                className="w-full px-3 py-1 rounded-sm outline-1 outline-red-600 
+             bg-rose-200 text-red-600
+             font-medium font-poppins
+             hover:bg-red-600 hover:text-white transition-colors
+             cursor-pointer
+             disabled:opacity-50 disabled:cursor-not-allowed"
+              >
+                Delete All Transactions
+              </button>
             </div>
           </div>
         </div>
