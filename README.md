@@ -5,10 +5,10 @@ Website pencatat keuangan pribadi untuk mahasiswa.
 ## Tim
 - Nama Tim: Nama timnya mau yg bener apa yg gajelas
 - Anggota:
-    - Ajwa Fadhila Zulfa (26/583353/PA/24485) - tugas
-    - Khaira Denisa (26/586577/PA/24693) - tugas
-    - Lumongga Anandita Helmy  (26/587341/PA/24756) - tugas
-    - Audina Dwiyunita Putri (26/587248/PA/24748) - Laporan
+    - Ajwa Fadhila Zulfa (26/583353/PA/24485) - Mendesain website dan kode program CSS
+    - Khaira Denisa (26/586577/PA/24693) - Kode program Javascript
+    - Lumongga Anandita Helmy  (26/587341/PA/24756) - Mendesain website dan edit README
+    - Audina Dwiyunita Putri (26/587248/PA/24748) - Membuat laporan
 
 ## Deskripsi
 PennyWise merupakan website pencatat keuangan pribadi yang praktis dan ramah bagi mahasiswa. Website ini memiliki beberapa fitur seperti:
@@ -79,4 +79,12 @@ src/
 
 Build produksi dapat dibuat dengan `npm run build`.
 
-## Keterangan penggunaan AI, template, starter code, dan aset pihak ketiga.
+## Keterangan penggunaan AI, template, starter code, dan aset pihak ketiga
+- Penggunaan AI untuk membantu membenarkan error.
+- Melakukan code reuse dari proyek pribadi sebelumnya, lalu diubah.
+- Penggunaan library:
+    1. React dan React DOM - untuk membangun antarmuka
+    2. nanoid - untuk membuat ID unik
+    3. Vite dan @vitejs/plugin-react - untuk dev server dan build tool
+    4. Tailwind CSS, @tailwindcss/postcss, PostCSS, Autoprefixer - untuk styling
+
