@@ -19,10 +19,11 @@ Website pencatat keuangan pribadi untuk mahasiswa.
 
 ## Teknologi
 
-- React dan React DOM
-- Vite
-- Tailwind CSS dan PostCSS
-- Nanoid
+- React dan React DOM untuk antarmuka.
+- Vite dan plugin React untuk pengembangan dan build.
+- Tailwind CSS v4 untuk styling.
+- PostCSS dan Autoprefixer untuk pemrosesan CSS.
+- Nanoid untuk membuat ID transaksi.
 
 ## Instalasi
 
